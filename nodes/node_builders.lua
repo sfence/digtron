@@ -13,9 +13,9 @@ end
 
 local builder_formspec_string =
 	"size[8,5.2]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"list[current_name;main;".. tostring(displace_due_to_help_button/2) ..",0;1,1;]" ..
 	"label[" .. tostring(displace_due_to_help_button/2).. ",0.8;" .. S("Block to build") .. "]" ..
 	"field[" .. tostring(displace_due_to_help_button + 1.3) ..",0.8;1,0.1;extrusion;" .. S("Extrusion") .. ";${extrusion}]" ..
@@ -63,13 +63,13 @@ local builder_on_rightclick = function(pos, node, clicker, itemstack, pointed_th
 	end
 	local meta = minetest.get_meta(pos)	
 	minetest.show_formspec(clicker:get_player_name(),
-		"digtron:builder"..minetest.pos_to_string(pos),
+		"hades_digtron:builder"..minetest.pos_to_string(pos),
 		builder_formspec(pos, meta))
 end
 
 minetest.register_on_player_receive_fields(function(sender, formname, fields)
 
-	if formname:sub(1, 15) ~= "digtron:builder" then
+	if formname:sub(1, 15) ~= "hades_digtron:builder" then
 		return
 	end
 	local pos = minetest.string_to_pos(formname:sub(16, -1))
@@ -125,7 +125,7 @@ minetest.register_on_player_receive_fields(function(sender, formname, fields)
 	end
 	
 	if fields.help and minetest.get_modpath("doc") then --check for mod in case someone disabled it after this digger was built
-		minetest.after(0.5, doc.show_entry, sender:get_player_name(), "nodes", "digtron:builder", true)
+		minetest.after(0.5, doc.show_entry, sender:get_player_name(), "nodes", "hades_digtron:builder", true)
 	end
 
 	digtron.update_builder_item(pos)
@@ -133,12 +133,12 @@ end)
 
 
 -- Builds objects in the targeted node. This is a complicated beastie.
-minetest.register_node("digtron:builder", {
+minetest.register_node("hades_digtron:builder", {
 	description = S("Digtron Builder Module"),
 	_doc_items_longdesc = digtron.doc.builder_longdesc,
     _doc_items_usagehelp = digtron.doc.builder_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 4},
-	drop = "digtron:builder",
+	drop = "hades_digtron:builder",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",

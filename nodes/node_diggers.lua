@@ -30,9 +30,10 @@ local dual_digger_nodebox = {
 
 local modpath_doc = minetest.get_modpath("doc")
 
-local intermittent_formspec_string = default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+local intermittent_formspec_string = 
+  --default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"field[0.5,0.8;1,0.1;period;" .. S("Periodicity") .. ";${period}]" ..
 	"tooltip[period;" .. S("Digger will dig once every n steps.\nThese steps are globally aligned, all diggers with\nthe same period and offset will dig on the same location.") .. "]" ..
 	"field[1.5,0.8;1,0.1;offset;" .. S("Offset") .. ";${offset}]" ..
@@ -71,12 +72,12 @@ local intermittent_on_rightclick = function(pos, node, clicker, itemstack, point
 	end
 	local meta = minetest.get_meta(pos)	
 	minetest.show_formspec(clicker:get_player_name(),
-		"digtron:intermittent_digger"..minetest.pos_to_string(pos),
+		"hades_digtron:intermittent_digger"..minetest.pos_to_string(pos),
 		intermittent_formspec(pos, meta))
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if formname:sub(1, 27) == "digtron:intermittent_digger" then
+	if formname:sub(1, 27) == "hades_digtron:intermittent_digger" then
 		local pos = minetest.string_to_pos(formname:sub(28, -1))
 	    local meta = minetest.get_meta(pos)
 		local period = tonumber(fields.period)
@@ -100,12 +101,12 @@ end)
 
 
 -- Digs out nodes that are "in front" of the digger head.
-minetest.register_node("digtron:digger", {
+minetest.register_node("hades_digtron:digger", {
 	description = S("Digtron Digger Head"),
 	_doc_items_longdesc = digtron.doc.digger_longdesc,
     _doc_items_usagehelp = digtron.doc.digger_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 3},
-	drop = "digtron:digger",
+	drop = "hades_digtron:digger",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -153,13 +154,13 @@ minetest.register_node("digtron:digger", {
 })
 
 -- Digs out nodes that are "in front" of the digger head.
-minetest.register_node("digtron:intermittent_digger", {
+minetest.register_node("hades_digtron:intermittent_digger", {
 	description = S("Digtron Intermittent Digger Head"),
 	_doc_items_longdesc = digtron.doc.intermittent_digger_longdesc,
     _doc_items_usagehelp = digtron.doc.intermittent_digger_usagehelp,
 	_digtron_formspec = intermittent_formspec,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 3},
-	drop = "digtron:intermittent_digger",
+	drop = "hades_digtron:intermittent_digger",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -224,12 +225,12 @@ minetest.register_node("digtron:intermittent_digger", {
 })
 
 -- A special-purpose digger to deal with stuff like sand and gravel in the ceiling. It always digs (no periodicity or offset), but it only digs falling_block nodes
-minetest.register_node("digtron:soft_digger", {
+minetest.register_node("hades_digtron:soft_digger", {
 	description = S("Digtron Soft Material Digger Head"),
 	_doc_items_longdesc = digtron.doc.soft_digger_longdesc,
     _doc_items_usagehelp = digtron.doc.soft_digger_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 3},
-	drop = "digtron:soft_digger",
+	drop = "hades_digtron:soft_digger",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -279,13 +280,13 @@ minetest.register_node("digtron:soft_digger", {
 	end,
 })
 
-minetest.register_node("digtron:intermittent_soft_digger", {
+minetest.register_node("hades_digtron:intermittent_soft_digger", {
 	description = S("Digtron Intermittent Soft Material Digger Head"),
 	_doc_items_longdesc = digtron.doc.intermittent_soft_digger_longdesc,
     _doc_items_usagehelp = digtron.doc.intermittent_soft_digger_usagehelp,
 	_digtron_formspec = intermittent_formspec,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 3},
-	drop = "digtron:intermittent_soft_digger",
+	drop = "hades_digtron:intermittent_soft_digger",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -353,12 +354,12 @@ minetest.register_node("digtron:intermittent_soft_digger", {
 })
 
 -- Digs out nodes that are "in front" of the digger head and "below" the digger head (can be rotated).
-minetest.register_node("digtron:dual_digger", {
+minetest.register_node("hades_digtron:dual_digger", {
 	description = S("Digtron Dual Digger Head"),
 	_doc_items_longdesc = digtron.doc.dual_digger_longdesc,
     _doc_items_usagehelp = digtron.doc.dual_digger_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 3},
-	drop = "digtron:dual_digger",
+	drop = "hades_digtron:dual_digger",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -434,12 +435,12 @@ minetest.register_node("digtron:dual_digger", {
 })
 
 -- Digs out soft nodes that are "in front" of the digger head and "below" the digger head (can be rotated).
-minetest.register_node("digtron:dual_soft_digger", {
+minetest.register_node("hades_digtron:dual_soft_digger", {
 	description = S("Digtron Dual Soft Material Digger Head"),
 	_doc_items_longdesc = digtron.doc.dual_soft_digger_longdesc,
     _doc_items_usagehelp = digtron.doc.dual_soft_digger_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 3},
-	drop = "digtron:dual_soft_digger",
+	drop = "hades_digtron:dual_soft_digger",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",

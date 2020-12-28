@@ -6,9 +6,9 @@ local pipeworks_path = minetest.get_modpath("pipeworks")
 
 local inventory_formspec_string = 
 	"size[8,9.3]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"label[0,0;" .. S("Inventory items") .. "]" ..
 	"list[current_name;main;0,0.6;8,4;]" ..
 	"list[current_player;main;0,5.15;8,1;]" ..
@@ -23,13 +23,13 @@ end
 
 -- Storage buffer. Builder nodes draw from this inventory and digger nodes deposit into it.
 -- Note that inventories are digtron group 2.
-minetest.register_node("digtron:inventory", {
+minetest.register_node("hades_digtron:inventory", {
 	description = S("Digtron Inventory Storage"),
 	_doc_items_longdesc = digtron.doc.inventory_longdesc,
 	_doc_items_usagehelp = digtron.doc.inventory_usagehelp,
 	_digtron_formspec = inventory_formspec,
 	groups = {cracky = 3, oddly_breakable_by_hand=3, digtron = 2, tubedevice = 1, tubedevice_receiver = 1},
-	drop = "digtron:inventory",
+	drop = "hades_digtron:inventory",
 	sounds = digtron.metal_sounds,
 	paramtype2= "facedir",
 	drawtype = "nodebox",
@@ -87,9 +87,9 @@ minetest.register_node("digtron:inventory", {
 
 local fuelstore_formspec_string = 
 	"size[8,9.3]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"label[0,0;" .. S("Fuel items") .. "]" ..
 	"list[current_name;fuel;0,0.6;8,4;]" ..
 	"list[current_player;main;0,5.15;8,1;]" ..
@@ -104,13 +104,13 @@ end
 	
 -- Fuel storage. Controller node draws fuel from here.
 -- Note that fuel stores are digtron group 5.
-minetest.register_node("digtron:fuelstore", {
+minetest.register_node("hades_digtron:fuelstore", {
 	description = S("Digtron Fuel Storage"),
 	_doc_items_longdesc = digtron.doc.fuelstore_longdesc,
 	_doc_items_usagehelp = digtron.doc.fuelstore_usagehelp,
 	_digtron_formspec = fuelstore_formspec,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 5, tubedevice = 1, tubedevice_receiver = 1},
-	drop = "digtron:fuelstore",
+	drop = "hades_digtron:fuelstore",
 	sounds = digtron.metal_sounds,
 	paramtype2= "facedir",
 	drawtype = "nodebox",
@@ -186,9 +186,9 @@ minetest.register_node("digtron:fuelstore", {
 
 local combined_storage_formspec_string =
 	"size[8,9.9]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"label[0,0;" .. S("Inventory items") .. "]" ..
 	"list[current_name;main;0,0.6;8,3;]" ..
 	"label[0,3.5;" .. S("Fuel items") .. "]" ..
@@ -204,13 +204,13 @@ local combined_storage_formspec = function(pos, meta)
 end
 
 -- Combined storage. Group 6 has both an inventory and a fuel store
-minetest.register_node("digtron:combined_storage", {
+minetest.register_node("hades_digtron:combined_storage", {
 	description = S("Digtron Combined Storage"),
 	_doc_items_longdesc = digtron.doc.combined_storage_longdesc,
     _doc_items_usagehelp = digtron.doc.combined_storage_usagehelp,
 	_digtron_formspec = combined_storage_formspec,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 6, tubedevice = 1, tubedevice_receiver = 1},
-	drop = "digtron:combined_storage",
+	drop = "hades_digtron:combined_storage",
 	sounds = digtron.metal_sounds,
 	paramtype2= "facedir",
 	drawtype = "nodebox",
@@ -299,16 +299,16 @@ minetest.register_node("digtron:combined_storage", {
 -- Hopper compatibility
 if minetest.get_modpath("hopper") and hopper ~= nil and hopper.add_container ~= nil then
 	hopper:add_container({
-		{"top", "digtron:inventory", "main"},
-		{"bottom", "digtron:inventory", "main"},
-		{"side", "digtron:inventory", "main"},
+		{"top", "hades_digtron:inventory", "main"},
+		{"bottom", "hades_digtron:inventory", "main"},
+		{"side", "hades_digtron:inventory", "main"},
 
-		{"top", "digtron:fuelstore", "fuel"},
-		{"bottom", "digtron:fuelstore", "fuel"},
-		{"side", "digtron:fuelstore", "fuel"},
+		{"top", "hades_digtron:fuelstore", "fuel"},
+		{"bottom", "hades_digtron:fuelstore", "fuel"},
+		{"side", "hades_digtron:fuelstore", "fuel"},
 	
-		{"top", "digtron:combined_storage", "main"},
-		{"bottom", "digtron:combined_storage", "main"},
-		{"side", "digtron:combined_storage", "fuel"},
+		{"top", "hades_digtron:combined_storage", "main"},
+		{"bottom", "hades_digtron:combined_storage", "main"},
+		{"side", "hades_digtron:combined_storage", "fuel"},
 	})
 end

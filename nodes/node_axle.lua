@@ -2,12 +2,12 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-minetest.register_node("digtron:axle", {
+minetest.register_node("hades_digtron:axle", {
 	description = S("Digtron Rotation Axle"),
 	_doc_items_longdesc = digtron.doc.axle_longdesc,
     _doc_items_usagehelp = digtron.doc.axle_usagehelp,
 	groups = {cracky = 3, oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:axle",
+	drop = "hades_digtron:axle",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",

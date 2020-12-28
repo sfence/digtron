@@ -3,12 +3,12 @@ local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 -- A do-nothing "structural" node, to ensure all digtron nodes that are supposed to be connected to each other can be connected to each other.
-minetest.register_node("digtron:structure", {
+minetest.register_node("hades_digtron:structure", {
 	description = S("Digtron Structure"),
 	_doc_items_longdesc = digtron.doc.structure_longdesc,
     _doc_items_usagehelp = digtron.doc.structure_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:structure",
+	drop = "hades_digtron:structure",
 	tiles = {"digtron_plate.png"},
 	drawtype = "nodebox",
 	sounds = digtron.metal_sounds,
@@ -36,18 +36,18 @@ minetest.register_node("digtron:structure", {
 })
 
 -- A modest light source that will move with the digtron, handy for working in a tunnel you aren't bothering to install permanent lights in.
-minetest.register_node("digtron:light", {
+minetest.register_node("hades_digtron:light", {
 	description = S("Digtron Light"),
 	_doc_items_longdesc = digtron.doc.light_longdesc,
     _doc_items_usagehelp = digtron.doc.light_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:light",
+	drop = "hades_digtron:light",
 	tiles = {"digtron_plate.png^digtron_light.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
 	is_ground_content = false,
 	light_source = 10,
-	sounds = default.node_sound_glass_defaults(),
+	sounds = hades_sounds.node_sound_glass_defaults(),
 	paramtype2 = "wallmounted",
 	node_box = {
 		type = "wallmounted",
@@ -58,12 +58,12 @@ minetest.register_node("digtron:light", {
 })
 
 -- A simple structural panel
-minetest.register_node("digtron:panel", {
+minetest.register_node("hades_digtron:panel", {
 	description = S("Digtron Panel"),
 	_doc_items_longdesc = digtron.doc.panel_longdesc,
     _doc_items_usagehelp = digtron.doc.panel_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:panel",
+	drop = "hades_digtron:panel",
 	tiles = {"digtron_plate.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -81,12 +81,12 @@ minetest.register_node("digtron:panel", {
 })
 
 -- A simple structural panel
-minetest.register_node("digtron:edge_panel", {
+minetest.register_node("hades_digtron:edge_panel", {
 	description = S("Digtron Edge Panel"),
 	_doc_items_longdesc = digtron.doc.edge_panel_longdesc,
     _doc_items_usagehelp = digtron.doc.edge_panel_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:edge_panel",
+	drop = "hades_digtron:edge_panel",
 	tiles = {"digtron_plate.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -110,12 +110,12 @@ minetest.register_node("digtron:edge_panel", {
 
 })
 
-minetest.register_node("digtron:corner_panel", {
+minetest.register_node("hades_digtron:corner_panel", {
 	description = S("Digtron Corner Panel"),
 	_doc_items_longdesc = digtron.doc.corner_panel_longdesc,
     _doc_items_usagehelp = digtron.doc.corner_panel_usagehelp,
 	groups = {cracky = 3,  oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:corner_panel",
+	drop = "hades_digtron:corner_panel",
 	tiles = {"digtron_plate.png"},
 	drawtype = "nodebox",
 	paramtype = "light",

@@ -8,9 +8,9 @@ local max_dig_cost = math.max(digtron.config.dig_cost_cracky, digtron.config.dig
 
 local get_formspec_string = function(current_val, current_max)
 	return "size[4.5,0.6]" ..
-		default.gui_bg ..
-		default.gui_bg_img ..
-		default.gui_slots ..
+		--default.gui_bg ..
+		--default.gui_bg_img ..
+		--default.gui_slots ..
 		"field[0.2,0.3;1,1;value;;".. current_val .. "]" ..
 		"button[1,0;1,1;maximize;" .. S("Maximize\nPower") .."]" ..
 		"label[2,0;"..S("Maximum Power\nRequired: @1", current_max) .."]"..
@@ -23,7 +23,7 @@ if not minetest.get_modpath("technic") then
 	connector_groups.not_in_creative_inventory = 1
 end
 
-minetest.register_node("digtron:power_connector", {
+minetest.register_node("hades_digtron:power_connector", {
 	description = S("Digtron HV Power Connector"),
 	_doc_items_longdesc = digtron.doc.power_connector_longdesc,
     _doc_items_usagehelp = digtron.doc.power_connector_usagehelp,
@@ -96,5 +96,5 @@ minetest.register_node("digtron:power_connector", {
 })
 
 if minetest.get_modpath("technic") then
-	technic.register_machine("HV", "digtron:power_connector", technic.receiver)
+	technic.register_machine("HV", "hades_digtron:power_connector", technic.receiver)
 end

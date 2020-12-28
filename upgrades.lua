@@ -1,6 +1,6 @@
 -- re-applies the "_digtron_formspec" property from all digtron node defs to the digtron node's metadata.
 minetest.register_lbm({
-	name = "digtron:generic_formspec_sanitizer",
+	name = "hades_digtron:generic_formspec_sanitizer",
 	nodenames = {"group:digtron"},
 	action = function(pos, node)
 		local node_def = minetest.registered_nodes[node.name]
@@ -12,13 +12,13 @@ minetest.register_lbm({
 })
 
 minetest.register_lbm({
-	name = "digtron:sand_digger_upgrade",
-	nodenames = {"digtron:sand_digger"},
+	name = "hades_digtron:sand_digger_upgrade",
+	nodenames = {"hades_digtron:sand_digger"},
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
 		local offset = meta:get_string("offset")
 		local period = meta:get_string("period")
-		minetest.set_node(pos, {name = "digtron:soft_digger",
+		minetest.set_node(pos, {name = "hades_digtron:soft_digger",
 			param2 = node.param2})
 		meta:set_string("offset", offset)
 		meta:set_string("period", period)
@@ -26,8 +26,8 @@ minetest.register_lbm({
 })
 
 minetest.register_lbm({
-	name = "digtron:fuelstore_upgrade",
-	nodenames = {"digtron:fuelstore"},
+	name = "hades_digtron:fuelstore_upgrade",
+	nodenames = {"hades_digtron:fuelstore"},
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
@@ -38,8 +38,8 @@ minetest.register_lbm({
 })
 
 minetest.register_lbm({
-	name = "digtron:autocontroller_lateral_upgrade",
-	nodenames = {"digtron:auto_controller"},
+	name = "hades_digtron:autocontroller_lateral_upgrade",
+	nodenames = {"hades_digtron:auto_controller"},
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
 		local cycles = meta:get_int("offset")
@@ -50,8 +50,8 @@ minetest.register_lbm({
 })
 
 minetest.register_lbm({
-	name = "digtron:builder_extrusion_upgrade",
-	nodenames = {"digtron:builder"},
+	name = "hades_digtron:builder_extrusion_upgrade",
+	nodenames = {"hades_digtron:builder"},
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
 		meta:set_int("extrusion", 1)

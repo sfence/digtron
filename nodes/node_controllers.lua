@@ -18,12 +18,12 @@ local controller_nodebox ={
 local node_inventory_table = {type="node"} -- a reusable parameter for get_inventory calls, set the pos parameter before using.
 
 -- Master controller. Most complicated part of the whole system. Determines which direction a digtron moves and triggers all of its component parts.
-minetest.register_node("digtron:controller", {
+minetest.register_node("hades_digtron:controller", {
 	description = S("Digtron Control Module"),
 	_doc_items_longdesc = digtron.doc.controller_longdesc,
     _doc_items_usagehelp = digtron.doc.controller_usagehelp,
 	groups = {cracky = 3, oddly_breakable_by_hand = 3, digtron = 1},
-	drop = "digtron:controller",
+	drop = "hades_digtron:controller",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -78,9 +78,9 @@ minetest.register_node("digtron:controller", {
 ---------------------------------------------------------------------------------------------------------------
 
 local auto_formspec = "size[8,6.2]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"container[2.0,0]" ..
 	"field[0.0,0.8;1,0.1;cycles;" .. S("Cycles").. ";${cycles}]" ..
 	"tooltip[cycles;" .. S("When triggered, this controller will try to run for the given number of cycles.\nThe cycle count will decrement as it runs, so if it gets halted by a problem\nyou can fix the problem and restart.").. "]" ..
@@ -175,14 +175,14 @@ local function auto_cycle(pos)
 	end
 end
 
-minetest.register_node("digtron:auto_controller", {
+minetest.register_node("hades_digtron:auto_controller", {
 	description = S("Digtron Automatic Control Module"),
 	_doc_items_longdesc = digtron.doc.auto_controller_longdesc,
     _doc_items_usagehelp = digtron.doc.auto_controller_usagehelp,
 	--Don't set a _digtron_formspec for this node_def.
 	--Auto-controller has special formspec handling, while active it has no formspec and right-clicking interrupts it.
 	groups = {cracky = 3, oddly_breakable_by_hand = 3, digtron = 1},
-	drop = "digtron:auto_controller",
+	drop = "hades_digtron:auto_controller",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",
@@ -275,19 +275,19 @@ minetest.register_node("digtron:auto_controller", {
 			local markerpos = {x=newpos.x, y=newpos.y, z=newpos.z}
 			local x_pos = math.floor((newpos[controlling_coordinate]+offset)/slope)*slope - offset
 			markerpos[controlling_coordinate] = x_pos
-			minetest.add_entity(markerpos, "digtron:marker_vertical")
+			minetest.add_entity(markerpos, "hades_digtron:marker_vertical")
 			if x_pos >= newpos[controlling_coordinate] then
 				markerpos[controlling_coordinate] = x_pos - slope
-				minetest.add_entity(markerpos, "digtron:marker_vertical")
+				minetest.add_entity(markerpos, "hades_digtron:marker_vertical")
 			end
 			if x_pos <= newpos[controlling_coordinate] then
 				markerpos[controlling_coordinate] = x_pos + slope
-				minetest.add_entity(markerpos, "digtron:marker_vertical")
+				minetest.add_entity(markerpos, "hades_digtron:marker_vertical")
 			end
 		end	
 		
 		if fields.help and minetest.get_modpath("doc") then --check for mod in case someone disabled it after this digger was built
-			minetest.after(0.5, doc.show_entry, sender:get_player_name(), "nodes", "digtron:auto_controller", true)
+			minetest.after(0.5, doc.show_entry, sender:get_player_name(), "nodes", "hades_digtron:auto_controller", true)
 		end
 	end,	
 	
@@ -303,12 +303,12 @@ minetest.register_node("digtron:auto_controller", {
 
 -- A much simplified control unit that only moves the digtron, and doesn't trigger the diggers or builders.
 -- Handy for shoving a digtron to the side if it's been built a bit off.
-minetest.register_node("digtron:pusher", {
+minetest.register_node("hades_digtron:pusher", {
 	description = S("Digtron Pusher Module"),
 	_doc_items_longdesc = digtron.doc.pusher_longdesc,
     _doc_items_usagehelp = digtron.doc.pusher_usagehelp,
 	groups = {cracky = 3, oddly_breakable_by_hand=3, digtron = 1},
-	drop = "digtron:pusher",
+	drop = "hades_digtron:pusher",
 	sounds = digtron.metal_sounds,
 	paramtype = "light",
 	paramtype2= "facedir",

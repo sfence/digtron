@@ -10,7 +10,7 @@ local formspec_width = 1.5
 local ejector_formspec_string = 
 	default.gui_bg ..
 	default.gui_bg_img ..
-	default.gui_slots
+  default.gui_slots
 
 if doc_path then
 	ejector_formspec_string = ejector_formspec_string ..
@@ -109,7 +109,7 @@ local function eject_items(pos, node, player, eject_even_without_pipeworks, layo
 	return false
 end
 
-minetest.register_node("digtron:inventory_ejector", {
+minetest.register_node("hades_digtron:inventory_ejector", {
 	description = S("Digtron Inventory Ejector"),
 	_doc_items_longdesc = digtron.doc.inventory_ejector_longdesc,
     _doc_items_usagehelp = digtron.doc.inventory_ejector_usagehelp,

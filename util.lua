@@ -1,15 +1,17 @@
 -- A random assortment of methods used in various places in this mod.
 
-dofile( minetest.get_modpath( "digtron" ) .. "/util_item_place_node.lua" ) -- separated out to avoid potential for license complexity
-dofile( minetest.get_modpath( "digtron" ) .. "/util_execute_cycle.lua" ) -- separated out simply for tidiness, there's some big code in there
+local digtron_modpath = minetest.get_modpath(minetest.get_current_modname() )
+
+dofile( digtron_modpath .. "/util_item_place_node.lua" ) -- separated out to avoid potential for license complexity
+dofile( digtron_modpath .. "/util_execute_cycle.lua" ) -- separated out simply for tidiness, there's some big code in there
 
 local node_inventory_table = {type="node"} -- a reusable parameter for get_inventory calls, set the pos parameter before using.
 
 -- Apparently node_sound_metal_defaults is a newer thing, I ran into games using an older version of the default mod without it.
-if default.node_sound_metal_defaults ~= nil then
-	digtron.metal_sounds = default.node_sound_metal_defaults()
+if hades_sounds.node_sound_metal_defaults ~= nil then
+	digtron.metal_sounds = hades_sounds.node_sound_metal_defaults()
 else
-	digtron.metal_sounds = default.node_sound_stone_defaults()
+	digtron.metal_sounds = hades_sounds.node_sound_stone_defaults()
 end
 
 
@@ -285,7 +287,7 @@ digtron.remove_builder_item = function(pos)
 	local objects = minetest.get_objects_inside_radius(pos, 0.5)
 	if objects ~= nil then
 		for _, obj in ipairs(objects) do
-			if obj and obj:get_luaentity() and obj:get_luaentity().name == "digtron:builder_item" then
+			if obj and obj:get_luaentity() and obj:get_luaentity().name == "hades_digtron:builder_item" then
 				obj:remove()
 			end
 		end
@@ -300,7 +302,7 @@ digtron.update_builder_item = function(pos)
 	local item_stack = inv:get_stack("main", 1)
 	if not item_stack:is_empty() then
 		digtron.create_builder_item = item_stack:get_name()
-		minetest.add_entity(pos,"digtron:builder_item")
+		minetest.add_entity(pos,"hades_digtron:builder_item")
 	end
 end
 
@@ -390,34 +392,34 @@ end
 digtron.show_offset_markers = function(pos, offset, period)
 	local buildpos = digtron.find_new_pos(pos, minetest.get_node(pos).param2)
 	local x_pos = math.floor((buildpos.x+offset)/period)*period - offset
-	safe_add_entity({x=x_pos, y=buildpos.y, z=buildpos.z}, "digtron:marker")
+	safe_add_entity({x=x_pos, y=buildpos.y, z=buildpos.z}, "hades_digtron:marker")
 	if x_pos >= buildpos.x then
-		safe_add_entity({x=x_pos - period, y=buildpos.y, z=buildpos.z}, "digtron:marker")
+		safe_add_entity({x=x_pos - period, y=buildpos.y, z=buildpos.z}, "hades_digtron:marker")
 	end
 	if x_pos <= buildpos.x then
-		safe_add_entity({x=x_pos + period, y=buildpos.y, z=buildpos.z}, "digtron:marker")
+		safe_add_entity({x=x_pos + period, y=buildpos.y, z=buildpos.z}, "hades_digtron:marker")
 	end
 
 	local y_pos = math.floor((buildpos.y+offset)/period)*period - offset
-	safe_add_entity({x=buildpos.x, y=y_pos, z=buildpos.z}, "digtron:marker_vertical")
+	safe_add_entity({x=buildpos.x, y=y_pos, z=buildpos.z}, "hades_digtron:marker_vertical")
 	if y_pos >= buildpos.y then
-		safe_add_entity({x=buildpos.x, y=y_pos - period, z=buildpos.z}, "digtron:marker_vertical")
+		safe_add_entity({x=buildpos.x, y=y_pos - period, z=buildpos.z}, "hades_digtron:marker_vertical")
 	end
 	if y_pos <= buildpos.y then
-		safe_add_entity({x=buildpos.x, y=y_pos + period, z=buildpos.z}, "digtron:marker_vertical")
+		safe_add_entity({x=buildpos.x, y=y_pos + period, z=buildpos.z}, "hades_digtron:marker_vertical")
 	end
 
 	local z_pos = math.floor((buildpos.z+offset)/period)*period - offset
 
-	local entity = safe_add_entity({x=buildpos.x, y=buildpos.y, z=z_pos}, "digtron:marker")
+	local entity = safe_add_entity({x=buildpos.x, y=buildpos.y, z=z_pos}, "hades_digtron:marker")
 	if entity ~= nil then entity:setyaw(1.5708) end
 	
 	if z_pos >= buildpos.z then
-		local entity = safe_add_entity({x=buildpos.x, y=buildpos.y, z=z_pos - period}, "digtron:marker")
+		local entity = safe_add_entity({x=buildpos.x, y=buildpos.y, z=z_pos - period}, "hades_digtron:marker")
 		if entity ~= nil then entity:setyaw(1.5708) end
 	end
 	if z_pos <= buildpos.z then
-		local entity = safe_add_entity({x=buildpos.x, y=buildpos.y, z=z_pos + period}, "digtron:marker")
+		local entity = safe_add_entity({x=buildpos.x, y=buildpos.y, z=z_pos + period}, "hades_digtron:marker")
 		if entity ~= nil then entity:setyaw(1.5708) end
 	end
 end

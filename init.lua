@@ -38,7 +38,7 @@ digtron.builder_on_place_prefixes = {
 
 -- Finally, items belonging to group "digtron_on_place" will have their on_place methods called.
 
-local digtron_modpath = minetest.get_modpath( "digtron" )
+local digtron_modpath = minetest.get_modpath(minetest.get_current_modname() )
 
 dofile( digtron_modpath .. "/class_fakeplayer.lua")
 
@@ -84,30 +84,30 @@ dofile( digtron_modpath .. "/upgrades.lua" ) -- various LBMs for upgrading older
 -- it to "eat" Digtrons sometimes.
 if minetest.get_modpath("catacomb") and catacomb ~= nil and catacomb.chamber_protected_nodes ~= nil and catacomb.passage_protected_nodes ~= nil then
 	local digtron_nodes = {
-		minetest.get_content_id("digtron:inventory"),
-		minetest.get_content_id("digtron:fuelstore"),
-		minetest.get_content_id("digtron:battery_holder"),
-		minetest.get_content_id("digtron:combined_storage"),
-		minetest.get_content_id("digtron:axle"),
-		minetest.get_content_id("digtron:builder"),
-		minetest.get_content_id("digtron:controller"),
-		minetest.get_content_id("digtron:auto_controller"),
-		minetest.get_content_id("digtron:pusher"),
-		minetest.get_content_id("digtron:loaded_crate"),
-		minetest.get_content_id("digtron:digger"),
-		minetest.get_content_id("digtron:intermittent_digger"),
-		minetest.get_content_id("digtron:soft_digger"),
-		minetest.get_content_id("digtron:intermittent_soft_digger"),
-		minetest.get_content_id("digtron:dual_digger"),
-		minetest.get_content_id("digtron:dual_soft_digger"),
-		minetest.get_content_id("digtron:structure"),
-		minetest.get_content_id("digtron:light"),
-		minetest.get_content_id("digtron:panel"),
-		minetest.get_content_id("digtron:edge_panel"),
-		minetest.get_content_id("digtron:corner_panel"),
-		minetest.get_content_id("digtron:battery_holder"),
-		minetest.get_content_id("digtron:inventory_ejector"),
-		minetest.get_content_id("digtron:power_connector"),
+		minetest.get_content_id("hades_digtron:inventory"),
+		minetest.get_content_id("hades_digtron:fuelstore"),
+		minetest.get_content_id("hades_digtron:battery_holder"),
+		minetest.get_content_id("hades_digtron:combined_storage"),
+		minetest.get_content_id("hades_digtron:axle"),
+		minetest.get_content_id("hades_digtron:builder"),
+		minetest.get_content_id("hades_digtron:controller"),
+		minetest.get_content_id("hades_digtron:auto_controller"),
+		minetest.get_content_id("hades_digtron:pusher"),
+		minetest.get_content_id("hades_digtron:loaded_crate"),
+		minetest.get_content_id("hades_digtron:digger"),
+		minetest.get_content_id("hades_digtron:intermittent_digger"),
+		minetest.get_content_id("hades_digtron:soft_digger"),
+		minetest.get_content_id("hades_digtron:intermittent_soft_digger"),
+		minetest.get_content_id("hades_digtron:dual_digger"),
+		minetest.get_content_id("hades_digtron:dual_soft_digger"),
+		minetest.get_content_id("hades_digtron:structure"),
+		minetest.get_content_id("hades_digtron:light"),
+		minetest.get_content_id("hades_digtron:panel"),
+		minetest.get_content_id("hades_digtron:edge_panel"),
+		minetest.get_content_id("hades_digtron:corner_panel"),
+		minetest.get_content_id("hades_digtron:battery_holder"),
+		minetest.get_content_id("hades_digtron:inventory_ejector"),
+		minetest.get_content_id("hades_digtron:power_connector"),
 	}
 	for _, node_id in pairs(digtron_nodes) do
 		catacomb.chamber_protected_nodes[node_id] = true

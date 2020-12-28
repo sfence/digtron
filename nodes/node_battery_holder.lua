@@ -7,9 +7,9 @@ local S, NS = dofile(MP.."/intllib.lua")
 -- Note that batttery boxes are digtron group 7.
 
 local battery_holder_formspec_string = "size[8,9.3]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--9+6default.gui_slots ..
 	"label[0,0;" .. S("Batteries") .. "]" ..
 	"list[current_name;batteries;0,0.6;8,4;]" ..
 	"list[current_player;main;0,5.15;8,1;]" ..
@@ -29,13 +29,13 @@ if not minetest.get_modpath("technic") then
 	holder_groups.not_in_creative_inventory = 1
 end
 	
-minetest.register_node("digtron:battery_holder", {
+minetest.register_node("hades_digtron:battery_holder", {
 	description = S("Digtron Battery Holder"),
 	_doc_items_longdesc = digtron.doc.battery_holder_longdesc,
 	_doc_items_usagehelp = digtron.doc.battery_holder_usagehelp,
 	_digtron_formspec = battery_holder_formspec,
 	groups = holder_groups,
-	drop = "digtron:battery_holder",
+	drop = "hades_digtron:battery_holder",
 	sounds = digtron.metal_sounds,
 	paramtype2= "facedir",
 	drawtype = "nodebox",

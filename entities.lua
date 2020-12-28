@@ -1,4 +1,4 @@
-minetest.register_entity("digtron:marker", {
+minetest.register_entity("hades_digtron:marker", {
 	initial_properties = {
 		visual = "cube",
 		visual_size = {x=1.05, y=1.05},
@@ -24,7 +24,7 @@ minetest.register_entity("digtron:marker", {
 	end,
 })
 
-minetest.register_entity("digtron:marker_vertical", {
+minetest.register_entity("hades_digtron:marker_vertical", {
 	initial_properties = {
 		visual = "cube",
 		visual_size = {x=1.05, y=1.05},
@@ -50,7 +50,7 @@ minetest.register_entity("digtron:marker_vertical", {
 	end,
 })
 
-minetest.register_entity("digtron:marker_crate_good", {
+minetest.register_entity("hades_digtron:marker_crate_good", {
 	initial_properties = {
 		visual = "cube",
 		visual_size = {x=1.05, y=1.05},
@@ -76,7 +76,7 @@ minetest.register_entity("digtron:marker_crate_good", {
 	end,
 })
 
-minetest.register_entity("digtron:marker_crate_bad", {
+minetest.register_entity("hades_digtron:marker_crate_bad", {
 	initial_properties = {
 		visual = "cube",
 		visual_size = {x=1.05, y=1.05},
@@ -102,7 +102,7 @@ minetest.register_entity("digtron:marker_crate_bad", {
 	end,
 })
 
-minetest.register_entity("digtron:builder_item", {
+minetest.register_entity("hades_digtron:builder_item", {
 
 	initial_properties = {
 		hp_max = 1,

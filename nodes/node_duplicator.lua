@@ -4,9 +4,9 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 local inventory_formspec_string = 
 	"size[9,9.3]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	--default.gui_bg ..
+	--default.gui_bg_img ..
+	--default.gui_slots ..
 	"label[0,0;" .. S("Digtron components") .. "]" ..
 	"list[current_name;main;0,0.6;8,4;]" ..
 	"list[current_player;main;0,5.15;8,1;]" ..
@@ -23,7 +23,7 @@ if minetest.get_modpath("doc") then
 		"tooltip[help;" .. S("Show documentation about this block") .. "]"
 end
 	
-minetest.register_node("digtron:duplicator", {
+minetest.register_node("hades_digtron:duplicator", {
 	description = S("Digtron Duplicator"),
 	_doc_items_longdesc = digtron.doc.duplicator_longdesc,
     _doc_items_usagehelp = digtron.doc.duplicator_usagehelp,
@@ -84,7 +84,7 @@ minetest.register_node("digtron:duplicator", {
 	
 	on_receive_fields = function(pos, formname, fields, sender)
 		if fields.help then
-			minetest.after(0.5, doc.show_entry, sender:get_player_name(), "nodes", "digtron:duplicator", true)
+			minetest.after(0.5, doc.show_entry, sender:get_player_name(), "nodes", "hades_digtron:duplicator", true)
 		end
 	
 		if fields.duplicate then
@@ -94,7 +94,7 @@ minetest.register_node("digtron:duplicator", {
 			local target_pos = vector.add(pos, minetest.facedir_to_dir(node.param2))
 			local target_node = minetest.get_node(target_pos)
 
-			if target_node.name ~= "digtron:empty_crate" then
+			if target_node.name ~= "hades_digtron:empty_crate" then
 				minetest.sound_play("buzzer", {gain=0.5, pos=pos})
 				meta:set_string("infotext", S("Needs an empty crate in output position to store duplicate"))
 				return
@@ -114,7 +114,7 @@ minetest.register_node("digtron:duplicator", {
 				return
 			end
 			
-			layout.all[1] = {node={name="digtron:empty_crate"}, meta={fields = {}, inventory = {}}, pos={x=pos.x, y=pos.y, z=pos.z}} -- replace the duplicator's image with the empty crate image
+			layout.all[1] = {node={name="hades_digtron:empty_crate"}, meta={fields = {}, inventory = {}}, pos={x=pos.x, y=pos.y, z=pos.z}} -- replace the duplicator's image with the empty crate image
 			
 			-- count required nodes, skipping node 1 since it's the crate and we already know it's present in-world
 			local required_count = {}
@@ -175,7 +175,7 @@ minetest.register_node("digtron:duplicator", {
 			-- replace empty crate with loaded crate and write image to its metadata
 			local layout_string = layout:serialize()
 			
-			minetest.set_node(target_pos, {name="digtron:loaded_crate", param1=node.param1, param2=node.param2})
+			minetest.set_node(target_pos, {name="hades_digtron:loaded_crate", param1=node.param1, param2=node.param2})
 			local target_meta = minetest.get_meta(target_pos)
 			target_meta:set_string("crated_layout", layout_string)
 			
