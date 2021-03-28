@@ -23,7 +23,7 @@ local battery_holder_formspec = function(pos, meta)
 end
 
 local holder_groups = {cracky = 3,  oddly_breakable_by_hand = 3, digtron = 7, tubedevice = 1, tubedevice_receiver = 1}
-if not minetest.get_modpath("technic") then
+if not minetest.get_modpath("hades_technic") then
 	-- if technic isn't installed there's no point in offering battery holders.
 	-- leave them registered, though, in case technic is being removed from an existing server.
 	holder_groups.not_in_creative_inventory = 1

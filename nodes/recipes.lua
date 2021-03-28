@@ -90,7 +90,7 @@ minetest.register_craft({
 			}
 })
 
-if minetest.get_modpath("technic") then
+if minetest.get_modpath("hades_technic") then
 	-- no need for this recipe if technic is not installed, avoid cluttering crafting guides
 	minetest.register_craft({
 		output = "hades_digtron:battery_holder",
@@ -104,9 +104,9 @@ if minetest.get_modpath("technic") then
 	minetest.register_craft({
 		output = "hades_digtron:power_connector",
 		recipe = {
-				{"","technic:hv_cable",""},
-				{"technic:hv_cable","hades_digtron:digtron_core","technic:hv_cable"},
-				{"","technic:hv_cable",""}
+				{"","hades_technic:hv_cable",""},
+				{"hades_technic:hv_cable","hades_digtron:digtron_core","hades_technic:hv_cable"},
+				{"","hades_technic:hv_cable",""}
 				}
 	})
 end

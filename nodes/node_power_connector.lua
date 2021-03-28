@@ -18,7 +18,7 @@ local get_formspec_string = function(current_val, current_max)
 end
 
 local connector_groups = {cracky = 3, oddly_breakable_by_hand=3, digtron = 8, technic_machine=1, technic_hv=1}
-if not minetest.get_modpath("technic") then
+if not minetest.get_modpath("hades_technic") then
 	-- Technic is not installed, hide this away.
 	connector_groups.not_in_creative_inventory = 1
 end
